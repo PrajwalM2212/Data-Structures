@@ -95,7 +95,8 @@ public class ArrayBag implements Bag {
 
         for (int i = 0; i < this.numItems; i++) {
             if (this.items[i].equals(item)) {
-                System.arraycopy(this.items, i + 1, this.items, i, this.numItems - i);
+                System.arraycopy(this.items, i + 1, this.items, i, this.numItems - i - 1);
+                this.items[this.numItems - 1] = null;
                 this.numItems = this.numItems - 1;
                 removed = true;
                 break;
@@ -106,7 +107,6 @@ public class ArrayBag implements Bag {
     }
 
     public static void main(String[] args) {
-        // write your code here
 
         ArrayBag arrayBag = new ArrayBag(4);
         arrayBag.add(4);
