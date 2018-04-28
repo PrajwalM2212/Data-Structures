@@ -6,17 +6,40 @@
 </head>
 
 <body>
+
+<p>
 <h3>Recursive Steps</h3>
 <ol>
-    <li>Recursive problems are solved by reducing it to simpler problems of same kind.
-    </li>
-    <li>This is done until a situation is reached where the problem is simple enough to be solved directly.
+    <li>Recursive problems are solved by reducing it to simpler problems of same kind until it can be solved directly
     </li>
     <li>The simplest problem is called the base case
     </li>
     <li>Base case stops recursion because it does not make another call to a method.
     </li>
 </ol>
+</p>
+
+<p>
+<h3>Structure of a program</h3>
+<article>
+    <pre><code>
+        recursionMethod(arguments){
+           if(base condition){
+              // Handle the base case
+           }else{
+              // Handle the recursive case
+              // Break the problem into simpler problems till it reaches base case
+              recursionMethod(changed arguments)
+           }
+        }
+    </code></pre>
+    <p>
+        A recursive method can have multiple base and recursive cases and each recursive call should take us closer to
+        the base case
+    </p>
+</article>
+
+<p>
 
 
 </body>
