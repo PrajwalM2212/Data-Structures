@@ -26,18 +26,21 @@ public class ArithmeticExpressions {
 
             if (l % 101 == 0) {
                 System.out.println(lE);
-                //System.exit(1);
+                System.out.println(l);
+                System.exit(1);
 
             }
             if (m % 101 == 0) {
                 System.out.println(mE);
-                //System.exit(1);
+                System.out.println(m);
+                System.exit(1);
 
 
             }
             if (n % 101 == 0) {
                 System.out.println(nE);
-                //System.exit(1);
+                System.out.println(n);
+                System.exit(1);
 
             }
 
