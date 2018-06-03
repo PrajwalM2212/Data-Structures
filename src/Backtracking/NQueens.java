@@ -42,7 +42,5 @@ public class NQueens {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         int[][] board = new int[n][n];
-
-
     }
 }
