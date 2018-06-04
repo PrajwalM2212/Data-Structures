@@ -8,7 +8,6 @@ public class SuperDigit {
         if (numDigits(sum) == 1) {
             return Integer.valueOf(sum);
         }
-
         return superDigit(splitAndAdd(sum));
 
     }
@@ -40,7 +39,7 @@ public class SuperDigit {
         for (int i = 0; i < length; i++) {
             sum = sum + Integer.valueOf(String.valueOf(num.charAt(i)));
         }
-        sum = sum*(factor);
+        sum = sum * (factor);
         System.out.println(sum);
         SuperDigit solution = new SuperDigit();
         System.out.println(solution.superDigit(String.valueOf(sum)));
