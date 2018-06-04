@@ -5,7 +5,9 @@ import java.util.Scanner;
 public class ArithmeticExpressions {
 
 
-    private void isSolvable(int feed, int[] a, int count, String expression) {
+    private int[] a;
+
+    private void isSolvable(int feed, int count, String expression) {
 
        /* if (count > a.length - 1) {
             return false;
@@ -28,20 +30,16 @@ public class ArithmeticExpressions {
                 System.out.println(lE);
                 System.out.println(l);
                 System.exit(1);
-
             }
             if (m % 101 == 0) {
                 System.out.println(mE);
                 System.out.println(m);
                 System.exit(1);
-
-
             }
             if (n % 101 == 0) {
                 System.out.println(nE);
                 System.out.println(n);
                 System.exit(1);
-
             }
 
            /* if ((l % 101 == 0 || m % 101 == 0 || n % 101 == 0 || o % 101 == 0)) {
@@ -54,11 +52,11 @@ public class ArithmeticExpressions {
         }
 
         if (count < a.length - 1) {
-            isSolvable(l, a, count + 1, lE);
-            isSolvable(m, a, count + 1, mE);
-            isSolvable(n, a, count + 1, nE);
-        }/*|| isSolvable(o, a, count + 1, oE)*/;
-
+            isSolvable(l, count + 1, lE);
+            isSolvable(m, count + 1, mE);
+            isSolvable(n, count + 1, nE);
+        }/*|| isSolvable(o, a, count + 1, oE)*/
+        ;
 
     }
 
@@ -71,7 +69,8 @@ public class ArithmeticExpressions {
         for (int i = 0; i < num; i++) {
             a[i] = scanner.nextInt();
         }
-        ae.isSolvable(a[0], a, 1, String.valueOf(a[0]));
+        ae.a = a;
+        ae.isSolvable(a[0], 1, String.valueOf(a[0]));
         scanner.close();
 
     }

@@ -6,17 +6,17 @@ public class CoinSum {
 
     private int key;
     private int[] candidates;
-    private int[][] cache = new int[10000][10000];
+    private long[][] cache = new long[10000][10000];
     private int recur = 0;
 
-    private int backtrack(int sum, int k) {
+    private long backtrack(int sum, int k) {
 
         if (cache[sum][k] != 0) {
             return cache[sum][k];
         }
 
         recur++;
-        int count = 0;
+        long count = 0;
 
         for (int i = k; i < candidates.length; i++) {
             sum = sum + candidates[i];
@@ -50,6 +50,6 @@ public class CoinSum {
         cs.key = key;
         System.out.print(cs.backtrack(0, 0));
         System.out.print("\n");
-        System.out.print(cs.recur);
+       // System.out.print(cs.recur);
     }
 }
