@@ -1,14 +1,10 @@
 package DynamicProgramming;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.PriorityQueue;
-import java.util.Scanner;
+import java.util.*;
 
 public class KFactorization {
 
     private int key;
-    private int[] a;
     private int count = 0;
     private HashMap<Integer, Boolean> hashMap = new HashMap<>();
     private PriorityQueue<String> fullExpCollection = new PriorityQueue<>(new Comparator<String>() {
@@ -18,8 +14,7 @@ public class KFactorization {
         }
     });
 
-
-    private boolean backtrack(int sum, String fullExp) {
+    private boolean backtrack(int[] a, int sum, String fullExp) {
 
         if (hashMap.get(sum) != null) {
             return hashMap.get(sum);
@@ -29,9 +24,12 @@ public class KFactorization {
         boolean c = false;
         for (int i = 0; i < a.length; i++) {
             sum = sum * a[i];
+            int[] arr = new int[a.length - 1];
+            System.arraycopy(a, 0, arr, 0, i);
+            System.arraycopy(a, i + 1, arr, i + 1 - 1, a.length - (i + 1));
             String fullExpression = fullExp + " " + sum;
             if (sum < key) {
-                c = backtrack(sum, fullExpression);
+                c = backtrack(arr, sum, fullExpression);
             }
             if (sum == key) {
                 fullExpCollection.add(fullExpression);
@@ -42,7 +40,6 @@ public class KFactorization {
 
         hashMap.put(sum, c);
         return hashMap.get(sum);
-        //return c;
     }
 
 
@@ -55,9 +52,8 @@ public class KFactorization {
             a[i] = scanner.nextInt();
         }
         KFactorization kF = new KFactorization();
-        kF.a = a;
         kF.key = key;
-        kF.backtrack(1, "1");
+        kF.backtrack(a, 1, "1");
         PriorityQueue<String> collection = kF.fullExpCollection;
         if (collection.size() == 0) {
             System.out.println("-1");
