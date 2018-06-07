@@ -50,6 +50,6 @@ public class CoinSum {
         cs.key = key;
         System.out.print(cs.backtrack(0, 0));
         System.out.print("\n");
-       // System.out.print(cs.recur);
+        System.out.print(cs.recur);
     }
 }
