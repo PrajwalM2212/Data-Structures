@@ -32,7 +32,6 @@ public class SubArray {
                 if (memo[i][j] > maxi) {
                     maxi = memo[i][j];
                 }
-
             }
         }
 
