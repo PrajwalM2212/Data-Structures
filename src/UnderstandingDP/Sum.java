@@ -11,7 +11,6 @@ public class Sum {
 
     private int recur(int sum, int k) {
 
-        count++;
         if (sum == key) {
             return 1;
         }
@@ -44,6 +43,6 @@ public class Sum {
         sum.a = a;
         sum.key = key;
         System.out.println(sum.recur(0, 0));
-       // System.out.println(sum.count);
+        System.out.println(sum.count);
     }
 }
