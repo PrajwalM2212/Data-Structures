@@ -1,21 +1,20 @@
 package DynamicProgramming;
 
-import java.util.HashMap;
+import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class ArrayFill {
 
     private int n;
     private int k;
-    private int x;
     private int[] a;
-    private HashMap<Integer, Integer> map = new HashMap<>();
-    private int[][] cache = new int[1000][1000];
+    private BigInteger[][] cache;
 
 
-    private int recur(int pos) {
+    private BigInteger recur(int pos) {
 
-        int count = 0;
+        BigInteger count = new BigInteger("0");
         for (int i = 1; i <= k; i++) {
             if (a[pos - 1] == i) {
                 continue;
@@ -27,14 +26,16 @@ public class ArrayFill {
             }
             a[pos] = i;
             if (pos < n - 2) {
-                count = count + recur(pos + 1);
+                if (cache[pos][i].equals(BigInteger.valueOf(0))) {
+                    BigInteger mod = new BigInteger("1000000007");
+                    count = count.add(recur(pos + 1)).mod(mod);
+                    cache[pos][i] = count;
+                } else {
+                    count = cache[pos][i];
+                }
             }
             if (pos == n - 2) {
-                count++;
-                for (int e : a) {
-                    System.out.println(e);
-                }
-                System.out.println("\n");
+                count = count.add(new BigInteger("1"));
             }
         }
         return count;
@@ -52,9 +53,12 @@ public class ArrayFill {
         ArrayFill fill = new ArrayFill();
         fill.n = n;
         fill.k = k;
-        fill.x = x;
         fill.a = a;
-        System.out.println(fill.recur(1));
-
+        BigInteger[][] cache = new BigInteger[1000][1000];
+        for (BigInteger[] row : cache) {
+            Arrays.fill(row, BigInteger.ZERO);
+        }
+        fill.cache = cache;
+        System.out.println((fill.recur(1)));
     }
 }
