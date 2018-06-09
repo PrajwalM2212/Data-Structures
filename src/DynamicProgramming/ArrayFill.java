@@ -1,5 +1,6 @@
 package DynamicProgramming;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class ArrayFill {
@@ -8,37 +9,35 @@ public class ArrayFill {
     private int k;
     private int x;
     private int[] a;
-    private int c;
-    private int[][] cache = new int[100000][10000];
+    private HashMap<Integer, Integer> map = new HashMap<>();
+    private int[][] cache = new int[1000][1000];
 
-    private int backtrack(int size, int start) {
 
-        if (cache[size][start] != 0) {
-            return cache[size][start];
-        }
-        c++;
+    private int recur(int pos) {
+
         int count = 0;
-
-        for (int i = start; i <= size; i++) {
-            for (int j = 1; j <= k; j++) {
-                if (j == a[i - 1]) {
+        for (int i = 1; i <= k; i++) {
+            if (a[pos - 1] == i) {
+                continue;
+            }
+            if (pos == n - 2) {
+                if (a[pos + 1] == i) {
                     continue;
                 }
-                if (i == n - 2 && j == x) {
-                    continue;
+            }
+            a[pos] = i;
+            if (pos < n - 2) {
+                count = count + recur(pos + 1);
+            }
+            if (pos == n - 2) {
+                count++;
+                for (int e : a) {
+                    System.out.println(e);
                 }
-                a[i] = j;
-                if (i == n - 2) {
-                    count++;
-                    for (int e : a) {
-                        System.out.println(e);
-                    }
-                    System.out.println("\n");
-                }
-                count = count + backtrack(size - i, start + i);
+                System.out.println("\n");
             }
         }
-        return cache[size][start] = count;
+        return count;
     }
 
     public static void main(String[] args) {
@@ -55,8 +54,7 @@ public class ArrayFill {
         fill.k = k;
         fill.x = x;
         fill.a = a;
-        System.out.println(fill.backtrack(n - 1, 1));
-        System.out.println(fill.c);
+        System.out.println(fill.recur(1));
 
     }
 }
