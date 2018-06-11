@@ -8,7 +8,7 @@ public class Reverse {
     private ArrayList<Integer> arrayList = new ArrayList<>();
 
     private void dynamic(int k, String n) {
-
+        boolean solvable = false;
         for (int i = 0; i <= 9; i++) {
             arrayList.add(k, i);
             if (k < n.length() - 1) {
