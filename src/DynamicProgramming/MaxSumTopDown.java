@@ -2,7 +2,7 @@ package DynamicProgramming;
 
 import java.util.Scanner;
 
-public class MaxSum {
+public class MaxSumTopDown {
 
     // example array of 6 rows and 5 columns
     /*      6 5
@@ -80,7 +80,7 @@ public class MaxSum {
                 }
             }
             int[][] cache = new int[1000][1000];
-            MaxSum maxSum = new MaxSum();
+            MaxSumTopDown maxSum = new MaxSumTopDown();
             maxSum.m = m;
             maxSum.n = n;
             maxSum.cache = cache;
