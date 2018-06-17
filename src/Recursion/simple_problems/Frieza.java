@@ -1,4 +1,4 @@
-package Recursion.advanced_problems;
+package Recursion.simple_problems;
 
 
 import java.util.Scanner;
