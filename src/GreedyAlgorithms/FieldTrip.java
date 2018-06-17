@@ -13,11 +13,11 @@ public class FieldTrip {
             return 0;
         }
 
-        arr[0] = shortPath(arr[0], arr[1]);
-        out.println(arr[0]);
+        arr[0] = shortPath(arr[0], farPath(arr));
+        // out.println(arr[0]);
         for (int i = 1; i < arr.length; i++) {
             arr[i] = shortPath(arr[i], arr[i - 1]);
-            out.println(arr[i]);
+            //out.println(arr[i]);
         }
 
         return 1 + solve(arr);
@@ -41,6 +41,34 @@ public class FieldTrip {
         }
 
         return k == 0;
+
+    }
+
+    private String farPath(String[] arr) {
+
+        int a = Integer.valueOf(arr[0].split(",")[0]);
+        int b = Integer.valueOf(arr[0].split(",")[1]);
+
+
+        double max = Integer.MIN_VALUE;
+        String ans = "";
+        for (int i = 1; i < arr.length; i++) {
+            int p = Integer.valueOf(arr[i].split(",")[0]);
+            int q = Integer.valueOf(arr[i].split(",")[1]);
+            double m = (Math.pow(p - a, 2) + Math.pow(q - b, 2));
+            if (max == m) {
+                ans = "";
+                ans = ans.concat(String.valueOf(a) + "," + String.valueOf(b));
+            } else {
+                max = Math.max(max, m);
+                if (max == m) {
+                    ans = "";
+                    ans = ans.concat(String.valueOf(p) + "," + String.valueOf(q));
+                }
+            }
+        }
+
+        return ans;
 
     }
 
