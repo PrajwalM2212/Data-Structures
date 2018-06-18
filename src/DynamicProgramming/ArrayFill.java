@@ -2,6 +2,7 @@ package DynamicProgramming;
 
 import java.math.BigInteger;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class ArrayFill {
@@ -12,7 +13,11 @@ public class ArrayFill {
     private BigInteger[][] cache;
 
 
-    private BigInteger recur(int pos) {
+    private BigInteger recur(int pos, int p) {
+
+        if (!Objects.equals(cache[pos][p], new BigInteger("0"))) {
+            return cache[pos][p];
+        }
 
         BigInteger count = new BigInteger("0");
         for (int i = 1; i <= k; i++) {
@@ -26,19 +31,14 @@ public class ArrayFill {
             }
             a[pos] = i;
             if (pos < n - 2) {
-                if (cache[pos][i].equals(BigInteger.valueOf(0))) {
-                    BigInteger mod = new BigInteger("1000000007");
-                    count = count.add(recur(pos + 1)).mod(mod);
-                    cache[pos][i] = count;
-                } else {
-                    count = cache[pos][i];
-                }
+                BigInteger mod = new BigInteger("1000000007");
+                count = count.add(recur(pos + 1, i)).mod(mod);
             }
             if (pos == n - 2) {
                 count = count.add(new BigInteger("1"));
             }
         }
-        return count;
+        return cache[pos][p] = count;
     }
 
     public static void main(String[] args) {
@@ -54,11 +54,11 @@ public class ArrayFill {
         fill.n = n;
         fill.k = k;
         fill.a = a;
-        BigInteger[][] cache = new BigInteger[1000][1000];
+        BigInteger[][] cache = new BigInteger[10000][10000];
         for (BigInteger[] row : cache) {
             Arrays.fill(row, BigInteger.ZERO);
         }
         fill.cache = cache;
-        System.out.println((fill.recur(1)));
+        System.out.println((fill.recur(1, 0)));
     }
 }

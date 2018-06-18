@@ -6,45 +6,47 @@ import java.util.Scanner;
 
 public class Good {
 
-    private int solve(int[] a, ArrayList<Integer> al, int alk, int k) {
+    HashSet<int[]> set = new HashSet<>();
 
-        int s = 0;
+    private void solve(int[] a, ArrayList<Integer> al, int alk, int k) {
+
         for (int j = 1; j <= a.length; j++) {
 
             a[al.get(alk)] = j;
 
             if (alk < al.size() - 1) {
-                s = s + solve(a, al, alk + 1, k);
+                solve(a, al, alk + 1, k);
             }
 
 
-            if (isUnique(a)) {
-                int c = 0;
-                for (int r = 1; r < a.length; r++) {
-                    if (a[r] > a[r - 1]) {
-                        c++;
-                    }
-                }
-                if (c == k) {
-                    s = s + 1;
-                    for (int e : a) {
-                        System.out.println(e);
-                    }
-                }
-            }
+            if (isUnique(a, k)) {
 
+                set.add(a);
+                for (int e : a) {
+                    System.out.println(e);
+                }
+
+            }
         }
-        return s;
     }
 
-    private boolean isUnique(int[] a) {
+    private boolean isUnique(int[] a, int k) {
         HashSet<Integer> set = new HashSet<>();
 
         for (int i = 0; i < a.length; i++) {
-
             set.add(a[i]);
         }
-        return a.length == set.size();
+
+
+        int c = 0;
+        for (int r = 1; r < a.length; r++) {
+            if (a[r] > a[r - 1]) {
+                c++;
+            }
+        }
+
+
+        return a.length == set.size() && c == k;
     }
 
     public static void main(String[] args) {
@@ -65,7 +67,8 @@ public class Good {
                 }
             }
             Good good = new Good();
-            System.out.println(good.solve(a, al, 0, k));
+            good.solve(a, al, 0, k);
+            System.out.println(good.set.size());
             t--;
         }
     }
