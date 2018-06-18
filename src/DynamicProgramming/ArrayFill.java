@@ -54,7 +54,7 @@ public class ArrayFill {
         fill.n = n;
         fill.k = k;
         fill.a = a;
-        BigInteger[][] cache = new BigInteger[10000][10000];
+        BigInteger[][] cache = new BigInteger[n][k+1];
         for (BigInteger[] row : cache) {
             Arrays.fill(row, BigInteger.ZERO);
         }
