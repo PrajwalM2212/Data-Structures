@@ -4,13 +4,10 @@ import java.util.Scanner;
 
 public class StockMaximize {
 
+    int[] cache;
 
-    private long[] cache ;
     private long solve(int start, long spent, int[] price, int shareCount) {
 
-        if(cache[start]!=0){
-            return cache[start];
-        }
 
         if (start == price.length - 1) {
             return Math.max(0, Math.max(0, ((shareCount * price[start]) - spent)));
@@ -29,7 +26,7 @@ public class StockMaximize {
             sell = profit + ((shareCount * price[start]) - spent) + solve(start + 1, 0, price, 0);
         }
 
-        return cache[start]=Math.max(Math.max(buy, none), sell);
+        return Math.max(Math.max(buy, none), sell);
 
     }
 
@@ -43,7 +40,7 @@ public class StockMaximize {
             for (int i = 0; i < n; i++) {
                 prices[i] = scanner.nextInt();
             }
-            long[] cache = new long[n+1];
+            int[] cache = new int[n+1];
             StockMaximize maximize = new StockMaximize();
             maximize.cache=cache;
             System.out.println(maximize.solve(0, 0, prices, 0));
