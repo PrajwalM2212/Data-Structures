@@ -1,4 +1,4 @@
-package DynamicProgramming;
+package Recursion.advanced_problems;
 
 import java.util.Scanner;
 
