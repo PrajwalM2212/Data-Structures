@@ -9,38 +9,53 @@ public class TimeSaving {
 
     private int n;
     private int[][] alreadyTravelled;
+    private int k;
+    private ArrayList<Long> time;
 
-    private long timeTaken(int rowIndex, int[][] matrix, int k, int timeSoFar, int from) {
+    private void timeTaken(int rowIndex, int[][] matrix, long timeSoFar, int from) {
 
-        System.out.println(from + "," + rowIndex);
+        System.out.println(from + "," + rowIndex + "," + timeSoFar);
+
+        // ArrayList<Long> timeTaken = new ArrayList<>();
+        //  long[] timeTake = new long[n];
         if (rowIndex == n - 1) {
-            return timeSoFar;
+            //  Arrays.fill(timeTake, 0);
+            time.add(timeSoFar);
         }
 
-        ArrayList<Long> timeTaken = new ArrayList<>();
+        if (rowIndex < n - 1) {
+            for (int i = 0; i < matrix.length; i++) {
+                if (matrix[rowIndex][i] != 0 && i != from) {
+                    if (alreadyTravelled[rowIndex][i] == 1) {
+                        //return Integer.MAX_VALUE;
+                        //timeTake[i] = Integer.MAX_VALUE;
 
-        for (int i = 0; i < matrix.length; i++) {
-            if (matrix[rowIndex][i] != 0 && i != from) {
-                if (alreadyTravelled[rowIndex][i] == 1) {
-                    return Integer.MAX_VALUE;
-                }
-                if (timeSoFar % k == 0) {
-                    int travelTime = k + matrix[rowIndex][i];
-                    alreadyTravelled[rowIndex][i] = 1;
-                    timeTaken.add(travelTime + timeTaken(i, matrix, k, travelTime + timeSoFar, rowIndex));
-                } else {
-                    alreadyTravelled[rowIndex][i] = 1;
-                    timeTaken.add(matrix[rowIndex][i] + timeTaken(i, matrix, k, matrix[rowIndex][i] + timeSoFar, rowIndex));
+                    } else if (timeSoFar > 0 && timeSoFar % (k) == 0) {
+
+                        long travelTime = ((k) - (timeSoFar % k)) + matrix[rowIndex][i];
+                        alreadyTravelled[rowIndex][i] = 1;
+                        // timeTaken.add(travelTime + timeTaken(i, matrix, k, travelTime + timeSoFar, rowIndex));
+                        // timeTake[i] = travelTime + timeTaken(i, matrix, travelTime + timeSoFar, rowIndex)[i];
+                        timeTaken(i, matrix, travelTime + timeSoFar, rowIndex);
+
+
+                    } else {
+                        alreadyTravelled[rowIndex][i] = 1;
+                        // timeTaken.add(matrix[rowIndex][i] + timeTaken(i, matrix, k, matrix[rowIndex][i] + timeSoFar, rowIndex));
+                        // timeTake[i] = matrix[rowIndex][i] + timeTaken(i, matrix, matrix[rowIndex][i] + timeSoFar, rowIndex)[i];
+                        timeTaken(i, matrix, matrix[rowIndex][i] + timeSoFar, rowIndex);
+                    }
                 }
             }
         }
 
-        Collections.sort(timeTaken);
+      /*  Collections.sort(timeTaken);
         if (timeTaken.size() > 0) {
             return timeTaken.get(0);
         } else {
             return Integer.MAX_VALUE;
-        }
+        }*/
+        // return timeTake;
     }
 
     public static void main(String[] args) {
@@ -63,7 +78,12 @@ public class TimeSaving {
         TimeSaving timeSaving = new TimeSaving();
         timeSaving.n = n;
         timeSaving.alreadyTravelled = aT;
-        System.out.println(timeSaving.timeTaken(0, matrix, k, 0, -1));
+        timeSaving.k = k;
+        timeSaving.time = new ArrayList<>();
+        timeSaving.timeTaken(0, matrix, 0, -1);
+        Collections.sort(timeSaving.time);
+        System.out.println(timeSaving.time.get(0));
+
 
     }
 }
