@@ -29,7 +29,6 @@ public class StringPermutation {
                 solve(arr, count + 1);
             }
         }
-
     }
 
     private int fact(int n) {
