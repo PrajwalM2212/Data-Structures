@@ -14,7 +14,7 @@ public class TimeSaving {
 
     private void timeTaken(int rowIndex, int[][] matrix, long timeSoFar, int from) {
 
-        System.out.println(from + "," + rowIndex + "," + timeSoFar);
+       // System.out.println(from + "," + rowIndex + "," + timeSoFar);
 
         // ArrayList<Long> timeTaken = new ArrayList<>();
         //  long[] timeTake = new long[n];
@@ -30,9 +30,9 @@ public class TimeSaving {
                         //return Integer.MAX_VALUE;
                         //timeTake[i] = Integer.MAX_VALUE;
 
-                    } else if (timeSoFar > 0 && timeSoFar % (k) == 0) {
-
-                        long travelTime = ((k) - (timeSoFar % k)) + matrix[rowIndex][i];
+                    } else if (timeSoFar >=4 && ((timeSoFar/k)%2!=0)) {
+                        long signalTime= k-(timeSoFar%k);
+                        long travelTime = signalTime + matrix[rowIndex][i];
                         alreadyTravelled[rowIndex][i] = 1;
                         // timeTaken.add(travelTime + timeTaken(i, matrix, k, travelTime + timeSoFar, rowIndex));
                         // timeTake[i] = travelTime + timeTaken(i, matrix, travelTime + timeSoFar, rowIndex)[i];
