@@ -55,7 +55,6 @@ public class Graph {
 
     private void print(Graph graph) {
 
-
         for (int i = 0; i < graph.adjList.length; i++) {
             out.println(String.format("Adjacency List of vertex %d", i));
             out.print("head");
