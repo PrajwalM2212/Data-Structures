@@ -9,6 +9,10 @@ public class Combinations {
 
         for (int i = 0; i < str.length(); i++) {
 
+            /*
+            Take a string in ascending order and split it into two parts . Pass the two parts into the recursive function
+            123 => 1 and 23 , 2 and 3
+             */
             recur(String.valueOf(str.charAt(i)), str.substring(i + 1), k);
 
         }
@@ -20,13 +24,15 @@ public class Combinations {
         if (start.length() < k) {
 
             for (int i = 0; i < remaining.length(); i++) {
-
+                /*
+                Take the remaining string split it into two parts . Append one part with the start. Pass the two parts into the recursive function
+                 */
                 recur(start + String.valueOf(remaining.charAt(i)), remaining.substring(i + 1), k);
 
             }
 
 
-        } else {
+        } else if (start.length() == k) {
 
             System.out.println(start);
 
