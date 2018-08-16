@@ -49,7 +49,6 @@ public class SubsetSum {
         SubsetSum subsetSum = new SubsetSum();
         subsetSum.solve(str, sum);
 
-
     }
 
 
