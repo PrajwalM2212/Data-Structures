@@ -1,12 +1,14 @@
 package Expert;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class CombinationSum {
 
 
     private ArrayList<ArrayList<Integer>> subsetSum(ArrayList<Integer> data, int des) {
 
+        Collections.sort(data);
         ArrayList<ArrayList<Integer>> solution = new ArrayList<>();
 
 
