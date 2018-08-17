@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class Permutations {
 
+    private int k;
+    private int count;
+
     private ArrayList<ArrayList<Integer>> permute(ArrayList<Integer> data) {
 
         ArrayList<ArrayList<Integer>> solution = new ArrayList<>();
@@ -28,6 +31,10 @@ public class Permutations {
 
         if (data.size() == 0) {
             solution.add(list);
+            count++;
+            if (count == k) {
+                System.out.println(solution.get(solution.size() - 1));
+            }
         }
 
 
@@ -53,6 +60,7 @@ public class Permutations {
         list.add(1);
         list.add(2);
         list.add(3);
+        perm.k = 4;
         System.out.println(perm.permute(list).toString());
 
     }
