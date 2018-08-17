@@ -14,7 +14,7 @@ public class CombinationSum {
 
             ArrayList<Integer> list = new ArrayList<>();
             list.add(data.get(i));
-            recur(data.get(i), data, i + 1, solution, list, des);
+            recur(data.get(i), data, i, solution, list, des);
 
         }
 
@@ -38,7 +38,7 @@ public class CombinationSum {
             for (int i = index; i < data.size(); i++) {
 
                 temp.add(data.get(i));
-                recur(sum + data.get(i), data, index, solution, new ArrayList<>(temp), des);
+                recur(sum + data.get(i), data, i, solution, new ArrayList<>(temp), des);
                 temp.remove(temp.size() - 1);
 
 
@@ -55,9 +55,9 @@ public class CombinationSum {
 
         CombinationSum cSum = new CombinationSum();
         ArrayList<Integer> list = new ArrayList<>();
-        list.add(1);
         list.add(2);
         list.add(3);
+        list.add(6);
         list.add(7);
         System.out.println(cSum.subsetSum(list, 7).toString());
 
