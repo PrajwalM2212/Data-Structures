@@ -4,26 +4,22 @@ import java.util.ArrayList;
 
 public class Solution {
 
-    private ArrayList<ArrayList<Integer>> soln = new ArrayList<>();
 
     public ArrayList<ArrayList<Integer>> subsets(ArrayList<Integer> A) {
 
+        ArrayList<ArrayList<Integer>> soln = new ArrayList<>();
         ArrayList<Integer> a = new ArrayList<>();
         soln.add(a);
 
         for (int i = 0; i < A.size(); i++) {
 
-            if (i <= A.size() - 1) {
-                recur(A.get(i), A, i + 1);
+            ArrayList<Integer> arr = new ArrayList<>();
+            arr.add(A.get(i));
+            soln.add(arr);
 
-            } else {
-
-                ArrayList<Integer> ans = new ArrayList<>();
-                ans.add(A.get(i));
-                soln.add(ans);
-
-            }
-
+            ArrayList<Integer> pass = new ArrayList<>();
+            pass.add(arr.get(0));
+            recur(pass, A, soln, i + 1);
 
         }
 
@@ -32,31 +28,26 @@ public class Solution {
     }
 
 
-    private void recur(int start, ArrayList<Integer> arr, int index) {
-
-        if (index <= arr.size()) {
-
-            ArrayList<Integer> ans = new ArrayList<>();
-            ans.add(start);
-            soln.add(ans);
-
-            for (int i = index; i < arr.size(); i++) {
-
-                String s = String.valueOf(start);
-                String a = String.valueOf(arr.get(i));
-                int value = Integer.valueOf(s + a);
-
-                recur(value, arr, i + 1);
+    private void recur(ArrayList<Integer> start, ArrayList<Integer> A, ArrayList<ArrayList<Integer>> soln, int index) {
 
 
+        for (int i = index; i < A.size(); i++) {
+
+            start.add(A.get(index));
+            soln.add(start);
+
+
+            ArrayList<Integer> pass = new ArrayList<>();
+            for (int e : start) {
+                pass.add(e);
             }
-
+            recur(pass, A, soln, i + 1);
         }
 
     }
 
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         Solution solution = new Solution();
         ArrayList<Integer> list = new ArrayList<>();
