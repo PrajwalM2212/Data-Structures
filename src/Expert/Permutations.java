@@ -40,6 +40,7 @@ public class Permutations {
 
         for (int i = 0; i < data.size(); i++) {
 
+
             list.add(data.get(i));
             // remove element from data and then re-add after recursive call ( alternatively refer 16)
             int e = data.remove(i);
