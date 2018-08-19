@@ -34,11 +34,38 @@ public class Change {
 
     // bottom-up DP
 
+    private int solve2(int n, int[] coins, int[] cache) {
+
+        cache[0] = 0;
+        for (int e : coins) {
+            cache[e] = 1;
+        }
+
+
+        for (int i = 1; i <= n; i++) {
+            int k = 10000;
+            if (cache[i] == 0) {
+
+                for (int coin : coins) {
+                    if (coin <= i) {
+                        k = Math.min(k, 1 + cache[i - coin]);
+                    }
+                }
+
+                cache[i] = k;
+
+            }
+
+
+        }
+
+        return cache[n];
+    }
 
     public static void main(String[] args) {
 
-        System.out.println(new Change().solve(100, new int[]{2, 4, 3}, new int[101]));
-
+        System.out.println(new Change().solve(120, new int[]{2, 4, 3}, new int[121]));
+        System.out.println(new Change().solve2(120, new int[]{2, 4, 3}, new int[121]));
     }
 
 
