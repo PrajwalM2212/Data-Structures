@@ -24,9 +24,7 @@ public class Wine {
     }
 
     // bottom-up approach
-
-
     public static void main(String[] args) {
-        System.out.println(new Wine().solve("2345", 1, new HashMap<>()));
+        System.out.println(new Wine().solve("234542331", 1, new HashMap<>()));
     }
 }
