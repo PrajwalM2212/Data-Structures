@@ -3,26 +3,40 @@ package Expert;
 
 public class PalindromePartition {
 
+    private String start;
+    private int count = 0;
 
-    private int solve(String start) {
+    public PalindromePartition(String start) {
 
+        this.start = start;
+
+
+    }
+
+    private int solve(int index, int[] cache) {
+
+        if (cache[index] != 0) {
+            return cache[index];
+        }
+
+        count++;
         int min;
-        if (start.equals("")) {
+        if (index == start.length()) {
             min = 0;
         } else {
             min = 1000;
         }
 
 
-        for (int i = 0; i < start.length(); i++) {
+        for (int i = index; i < start.length(); i++) {
 
-            if (isPalindrome(start.substring(0, i + 1))) {
-                min = Math.min(min, 1 + solve(start.substring(i + 1)));
+            if (isPalindrome(start.substring(index, i + 1))) {
+                min = Math.min(min, 1 + solve(i + 1, cache));
             }
 
         }
 
-        return min;
+        return cache[index] = min;
     }
 
 
@@ -33,8 +47,10 @@ public class PalindromePartition {
 
     public static void main(String[] args) {
 
-        PalindromePartition partition = new PalindromePartition();
-        System.out.println(partition.solve("abba"));
+        String start = "abbabb";
+        PalindromePartition partition = new PalindromePartition(start);
+        System.out.println(partition.solve(0, new int[start.length() + 1]));
+        System.out.println("The number of recursive calls " + partition.count);
 
     }
 }
