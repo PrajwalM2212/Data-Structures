@@ -9,14 +9,19 @@ public class Triangle {
 
     private static ArrayList<ArrayList<Integer>> triList;
 
-    private int solve(int listNum, int i) {
+    private int solve(int listNum, int i, int[][] cache) {
+
+        if(cache[listNum][i] != 0){
+            return cache[listNum][i];
+        }
+
 
         if (listNum == triList.size() - 1) {
             return triList.get(listNum).get(i);
         }
 
-        return Math.min(triList.get(listNum).get(i) + solve(listNum + 1, i),
-                triList.get(listNum).get(i) + solve(listNum + 1, i + 1));
+        return cache[listNum][i] = Math.min(triList.get(listNum).get(i) + solve(listNum + 1, i, cache),
+                triList.get(listNum).get(i) + solve(listNum + 1, i + 1, cache));
 
     }
 
@@ -25,10 +30,10 @@ public class Triangle {
         Triangle triangle = new Triangle();
         triangle.triList = new ArrayList<ArrayList<Integer>>();
         triList.add(new ArrayList<>(asList(2)));
-        triList.add(new ArrayList<>(asList(3,4)));
-        triList.add(new ArrayList<>(asList(6,5,7)));
-        triList.add(new ArrayList<>(asList(4,1,8,3)));
-        System.out.println(triangle.solve(0, 0));
+        triList.add(new ArrayList<>(asList(3, 4)));
+        triList.add(new ArrayList<>(asList(6, 5, 7)));
+        triList.add(new ArrayList<>(asList(4, 1, 8, 3)));
+        System.out.println(triangle.solve(0, 0, new int[4][4]));
 
     }
 }
