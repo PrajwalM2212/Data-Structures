@@ -21,6 +21,10 @@ public class PalindromeSubsequence {
             return cache[i][j] = 1;
         }
 
+        //if the final pair is a palindrome
+        if (i == j - 1 && s.charAt(i) == s.charAt(j)) {
+            return cache[i][j] = 2;
+        }
 
         // if last two elements are equal
         if (s.charAt(i) == s.charAt(j)) {
@@ -28,10 +32,6 @@ public class PalindromeSubsequence {
         }
 
 
-        //if the final pair is a palindrome
-        if (i == j - 1 && s.charAt(i) == s.charAt(j)) {
-            return cache[i][j] = 2;
-        }
 
         //if last two elements are not equal
         return cache[i][j] = Math.max(solve(i + 1, j, cache), solve(i, j - 1, cache));
@@ -41,7 +41,7 @@ public class PalindromeSubsequence {
 
     public static void main(String[] args) {
 
-        PalindromeSubsequence subsequence = new PalindromeSubsequence("BBABCBCABBAB");
+        PalindromeSubsequence subsequence = new PalindromeSubsequence("BBBAB");
         System.out.println(subsequence.solve(0, subsequence.s.length() - 1, new int[subsequence.s.length()][subsequence.s.length()]));
         System.out.println("Number of recursive calls " + subsequence.count);
 
