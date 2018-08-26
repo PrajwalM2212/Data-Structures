@@ -6,26 +6,31 @@ public class ChangeRev {
     int target;
 
 
-    private int solve(int sum) {
+    private int solve(int sum, int[] cache) {
 
         if (sum > target) {
             return 1000;
         }
 
 
+        if (cache[sum] != 0) {
+            return cache[sum];
+        }
+
+
         if (sum == target) {
-            return 0;
+            return cache[sum] = 0;
         }
 
         int min = 1000;
 
         for (int i = 0; i < coins.length; i++) {
 
-            min = Math.min(min, 1 + solve(sum + coins[i]));
+            min = Math.min(min, 1 + solve(sum + coins[i], cache));
 
 
         }
-        return min;
+        return cache[sum] = min;
     }
 
 
@@ -33,8 +38,8 @@ public class ChangeRev {
 
         ChangeRev changeRev = new ChangeRev();
         changeRev.coins = new int[]{2, 4, 3};
-        changeRev.target = 10;
-        System.out.println(changeRev.solve(0));
+        changeRev.target = 120;
+        System.out.println(changeRev.solve(0, new int[121]));
 
     }
 
