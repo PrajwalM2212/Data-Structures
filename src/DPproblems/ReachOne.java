@@ -61,8 +61,8 @@ public class ReachOne {
 
 
     public static void main(String[] args) {
-        System.out.println(new ReachOne().solve(12, new int[13]));
-        System.out.println(new ReachOne().solve2(12, new int[13]));
+        System.out.println(new ReachOne().solve(10, new int[13]));
+        System.out.println(new ReachOne().solve2(10, new int[13]));
     }
 
 
